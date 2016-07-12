@@ -67,4 +67,19 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>shipdemo-releases</name>
+            <url>https://shipdemo.jfrog.io/shipdemo/libs-release-local</url>
+        </repository>
+    </distributionManagement>
+
+  	<organization>
+  		<name>Shippable</name>
+  		<url>http://www.shippable.com//</url>
+  	</organization>
+
+
 </project>
