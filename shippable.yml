@@ -3,10 +3,6 @@ language: java
 jdk:
   - oraclejdk8
 
-branches:
-  only:
-    - shippable
-
 build:
   ci:
     - mvn -B -f $SHIPPABLE_BUILD_DIR/pom.xml -U clean deploy
