@@ -5,8 +5,7 @@ jdk:
 
 build:
   ci:
-    - mvn --version
-    - MAVEN_HOME=$(mvn --version | grep -h 'Maven home:' | awk '{print $3}')
-    - echo $MAVEN_HOME
-    - ls ~/.m2
-    - mvn -B -f $SHIPPABLE_BUILD_DIR/pom.xml -U clean deploy
+    #- mvn --version
+    #- MAVEN_HOME=$(mvn --version | grep -h 'Maven home:' | awk '{print $3}')
+    #- echo $MAVEN_HOME
+    - mvn -B -f $SHIPPABLE_BUILD_DIR/pom.xml -s ./.m2/settings.xml -U clean deploy
