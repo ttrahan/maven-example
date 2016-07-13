@@ -5,6 +5,7 @@ jdk:
 
 build:
   ci:
+    - mvn --version
     - MAVEN_HOME=$(mvn --version | grep -h 'Maven home:' | awk '{print $3}')
     - echo $MAVEN_HOME
     - ls ~/.m2
