@@ -3,9 +3,11 @@ language: java
 jdk:
   - oraclejdk8
 
+env:
+  global:
+    - secure: b7FVinQwwewqrN8dmnk3yjj5hS3aLNS0WwJ+0HDGRFXsxcim3X6gY1GQecZ0aqKG9t4T7W8nPS6oGgxD6/3Gw5ugDElwWzPfUsGORMdRLwaGxHK7BBaCVJMFrn3cewjhpXSgd4tsGxEm89QjoaWtekDmVNSqFSGfmiZbLHS+bh3P7jxQTLNRaQ7TXpx9yV2N3ev0VUx8wfIoGj5O/s493WFiyiQ1Gp8s8aHs5UvKiN7SG9zu03nPg2u67DgJ04CUddVdJ9pUFdQywJo85pn9sfazUg++WEFIodosRvm1Koa/z/FiIuvhkRWcpT+udv1zzpgS4OW/y8quRbQn59tE2w==
+
 build:
   ci:
-    #- mvn --version
-    #- MAVEN_HOME=$(mvn --version | grep -h 'Maven home:' | awk '{print $3}')
-    #- echo $MAVEN_HOME
+    - cat ./.m2/settings.xml | sed "s/{PASSWORD}/$PASSWORD/" > ./.m2/settings.xml
     - mvn -B -f $SHIPPABLE_BUILD_DIR/pom.xml -s ./.m2/settings.xml -U clean deploy
