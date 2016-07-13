@@ -74,6 +74,11 @@
             <name>shipdemo-releases</name>
             <url>https://shipdemo.jfrog.io/shipdemo/libs-release-local</url>
         </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>shipdemo-snapshots</name>
+            <url>https://shipdemo.jfrog.io/shipdemo/libs-snapshot-local</url>
+        </snapshotRepository>
     </distributionManagement>
 
   	<organization>
