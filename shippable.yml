@@ -5,4 +5,6 @@ jdk:
 
 build:
   ci:
+    - MAVEN_HOME=$(mvn --version | grep -h 'Maven home: ' | awk '{print $3}')
+    - echo $MAVEN_HOME
     - mvn -B -f $SHIPPABLE_BUILD_DIR/pom.xml -U clean deploy
