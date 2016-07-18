@@ -20,5 +20,7 @@ build:
 
   ci:
     - echo $JAVA_HOME
+    - mkdir -pv /relocate/maven-example && cp -r $SHIPPABLE_BUILD_DIR/.  /relocate/maven-example
+    - SHIPPABLE_BUILD_DIR=/relocate/maven-example && cd $SHIPPABLE_BUILD_DIR
     - sed -i "s/{PASSWORD}/$PASSWORD/" .m2/settings.xml
-    - mvn -B -f $SHIPPABLE_BUILD_DIR/pom.xml -s $SHIPPABLE_BUILD_DIR/.m2/settings.xml -U clean deploy
+    - mvn -q -B -s .m2/settings.xml -U clean deploy
