@@ -17,8 +17,8 @@ build:
   pre_ci:
     - BUILD_VERSION=VERSION_$SHIPPABLE_JOB_NUMBER
     - echo $BUILD_VERSION
-    - echo $JAVA_HOME
 
   ci:
-    - cat ./.m2/settings.xml | sed "s/{PASSWORD}/$PASSWORD/" > ./.m2/settings.xml
+    - echo $JAVA_HOME
+    - sed -i "s/{PASSWORD}/$PASSWORD/" .m2/settings.xml
     - mvn -B -f $SHIPPABLE_BUILD_DIR/pom.xml -s $SHIPPABLE_BUILD_DIR/.m2/settings.xml -U clean deploy
