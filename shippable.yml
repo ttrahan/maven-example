@@ -4,12 +4,13 @@ jdk:
   - oraclejdk8
 
 env:
+  matrix:
+    - VERSION_1=oracle-java-1.8.0_51
+    #- VERSION_2=oracle-java-1.8.0_91
+    - VERSION_2=java-8-oracle # default value - currently 1.8.0_91
+    - VERSION_3=oracle-java-1.8.0_92
   global:
     - secure: AHiqRPg2kZqNnncdCknxFP1Kz+v3+MmZz+Z85gA77HMyWY+O5m9zpza4nHRz05BR8jTANYSCGgCkwuLtXT507hWaJkQHgmUV/1LXCk3ntV6GXxgt4CmGzrgmIDY/L0pyQR/iRZklah854lhknICMUCyUxJ4MwPKeHa+YI0sH8ozDtpvo8ELWdQLkE+CNY3RLtdnVPYLQZn6vW4pVFruZ1bKedhlgKGL9KAbRml1vNvJ3yIFMXLwoxdMu7vOR2Am3XOqUgEClWoBUyGB/bBmXL/1ZRQOQsYWnqdYJjFbcA281LRjI+yWHcg94phCP6n0m+sDopOkGfVvFEa+o5o9N5A==
-  - VERSION_1=oracle-java-1.8.0_51
-  #- VERSION_2=oracle-java-1.8.0_91
-  - VERSION_2=java-8-oracle # default value - currently 1.8.0_91
-  - VERSION_3=oracle-java-1.8.0_92
 
 build:
   pre_ci_boot:
@@ -18,7 +19,7 @@ build:
     pull: true
 
   ci:
-    - BUILD_VERSION=VERSION_$SHIPPABLE_JOB_NUMBER
+    - BUILD_VERSION=$(VERSION_$SHIPPABLE_JOB_NUMBER
     - echo $BUILD_VERSION
     - echo $JAVA_HOME
     - ./set_java_version.sh
