@@ -8,17 +8,21 @@ env:
     - secure: AHiqRPg2kZqNnncdCknxFP1Kz+v3+MmZz+Z85gA77HMyWY+O5m9zpza4nHRz05BR8jTANYSCGgCkwuLtXT507hWaJkQHgmUV/1LXCk3ntV6GXxgt4CmGzrgmIDY/L0pyQR/iRZklah854lhknICMUCyUxJ4MwPKeHa+YI0sH8ozDtpvo8ELWdQLkE+CNY3RLtdnVPYLQZn6vW4pVFruZ1bKedhlgKGL9KAbRml1vNvJ3yIFMXLwoxdMu7vOR2Am3XOqUgEClWoBUyGB/bBmXL/1ZRQOQsYWnqdYJjFbcA281LRjI+yWHcg94phCP6n0m+sDopOkGfVvFEa+o5o9N5A==
 
   env:
-    - VERSION_1=oracle-java-1.8.0_54
-    - VERSION_2=oracle-java-1.8.0_60
-    # - VERSION_3=oracle-java-1.8.0_90
-    # - VERSION_4=oracle-java-1.8.0_91
+    - VERSION_1=oracle-java-1.8.0_51
+    - VERSION_2=oracle-java-1.8.0_91
+    # - VERSION_3=oracle-java-1.8.0_92
 
 build:
-  pre_ci:
-    - BUILD_VERSION=VERSION_$SHIPPABLE_JOB_NUMBER
-    - echo $BUILD_VERSION
+  pre_ci_boot:
+    image_name: ttrahan/u14jav
+    image_tag: tip
+    pull: true
 
   ci:
+    - BUILD_VERSION=VERSION_$SHIPPABLE_JOB_NUMBER
+    - echo $BUILD_VERSION
+    - echo $JAVA_HOME
+    - ./set_java_version.sh
     - echo $JAVA_HOME
     - mkdir -pv /relocate/maven-example && cp -r $SHIPPABLE_BUILD_DIR/.  /relocate/maven-example
     - SHIPPABLE_BUILD_DIR=/relocate/maven-example && cd $SHIPPABLE_BUILD_DIR
