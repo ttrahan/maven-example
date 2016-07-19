@@ -11,19 +11,15 @@ setup_jdk() {
   javac_path="/usr/lib/jvm/$BUILD_VERSION/bin/javac";
 
     if [ -f $java_path ]; then
-      echo "true"
-      exec_cmd "sudo update-alternatives --set java $java_path"
-    fi
-    if [ -f $javac_path ]; then
-      exec_cmd "sudo update-alternatives --set javac $javac_path"
+      update-alternatives --set java $java_path
     fi
 
-    exec_cmd "java -version"
-  fi
+    if [ -f $javac_path ]; then
+      update-alternatives --set javac $javac_path
+    fi
+
+    java -version
 }
 
-#
 # Call setup JAVA version
-#
-trap before_exit EXIT
-exec_grp "setup_jdk"
+setup_jdk

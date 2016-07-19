@@ -9,12 +9,13 @@ env:
 
   env:
     - VERSION_1=oracle-java-1.8.0_51
-    - VERSION_2=oracle-java-1.8.0_91
-    # - VERSION_3=oracle-java-1.8.0_92
+    #- VERSION_2=oracle-java-1.8.0_91
+    - VERSION_2=java-8-oracle # default value - currently 1.8.0_91
+    - VERSION_3=oracle-java-1.8.0_92
 
 build:
   pre_ci_boot:
-    image_name: ttrahan/u14jav
+    image_name: ttrahan/u14jav-custom-minor
     image_tag: tip
     pull: true
 
