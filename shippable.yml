@@ -18,7 +18,7 @@ build:
     pull: true
 
   ci:
-    - BUILD_VERSION=$(VERSION_$SHIPPABLE_JOB_NUMBER
+    - tmp=VERSION_$SHIPPABLE_JOB_NUMBER && BUILD_VERSION=${!tmp}
     - echo $BUILD_VERSION
     - echo $JAVA_HOME
     - ./set_java_version.sh
