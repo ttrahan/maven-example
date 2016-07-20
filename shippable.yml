@@ -22,7 +22,7 @@ build:
     - tmp=VERSION_$SHIPPABLE_JOB_NUMBER && export BUILD_VERSION=${!tmp}
     - echo $BUILD_VERSION
     - echo $JAVA_HOME
-    - ./set_java_version.sh
+    - . set_java_version.sh
     - echo $JAVA_HOME
     - mkdir -pv /relocate/maven-example && cp -r $SHIPPABLE_BUILD_DIR/.  /relocate/maven-example
     - SHIPPABLE_BUILD_DIR=/relocate/maven-example && cd $SHIPPABLE_BUILD_DIR
