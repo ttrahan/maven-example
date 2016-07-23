@@ -1,9 +1,14 @@
 #!/bin/bash -e
 
 #
-# Function to setup JAVA version depending on env variable
+# Function to install and set up JAVA version depending on env variable
 # called BUILD_VERSION in shippable.yml
 #
+
+export INSTALL_VERSION=$BUILD_VERSION.sh
+
+. /maven-example/java_versions/$INSTALL_VERSION
+
 setup_jdk() {
   export JAVA_HOME="/usr/lib/jvm/$BUILD_VERSION";
   export PATH="$PATH:/usr/lib/jvm/$BUILD_VERSION/bin";

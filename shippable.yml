@@ -13,15 +13,9 @@ env:
     - VERSION_3=oracle-java-1.8.0_92
 
 build:
-  pre_ci_boot:
-    image_name: ttrahan/u14jav-custom-minor
-    image_tag: tip
-    pull: true
-
   ci:
     - tmp=VERSION_$SHIPPABLE_JOB_NUMBER && export BUILD_VERSION=${!tmp}
     - echo $BUILD_VERSION
-    - echo $JAVA_HOME
     - . set_java_version.sh
     - echo $JAVA_HOME
     - mkdir -pv /relocate/maven-example && cp -r $SHIPPABLE_BUILD_DIR/.  /relocate/maven-example
