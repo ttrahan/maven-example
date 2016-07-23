@@ -9,7 +9,7 @@ STANDARD_VERSIONS="java-8-oracle java-7-oracle java-7-openjdk-amd64 java-6-openj
 
 if [[ ! $STANDARD_VERSIONS =~ $BUILD_VERSION ]]; then
   export INSTALL_VERSION=$BUILD_VERSION.sh
-  . $SHIPPABLE_BUILD_DIR/maven-example/java_versions/$INSTALL_VERSION
+  . $SHIPPABLE_BUILD_DIR/java_versions/$INSTALL_VERSION
 fi
 
 setup_jdk() {
