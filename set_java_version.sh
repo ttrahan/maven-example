@@ -5,9 +5,12 @@
 # called BUILD_VERSION in shippable.yml
 #
 
-export INSTALL_VERSION=$BUILD_VERSION.sh
+STANDARD_VERSIONS="java-8-oracle java-7-oracle java-7-openjdk-amd64 java-6-openjdk-amd64"
 
-. /maven-example/java_versions/$INSTALL_VERSION
+if [[ ! $STANDARD_VERSIONS =~ $BUILD_VERSION ]]; then
+  export INSTALL_VERSION=$BUILD_VERSION.sh
+  . $SHIPPABLE_BUILD_DIR/maven-example/java_versions/$INSTALL_VERSION
+fi
 
 setup_jdk() {
   export JAVA_HOME="/usr/lib/jvm/$BUILD_VERSION";
