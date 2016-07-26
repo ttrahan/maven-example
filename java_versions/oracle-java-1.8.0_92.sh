@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "================ Installing oracle-java8-minor-release-1.8.0_92 ================="
+echo "========== Installing oracle-java8-minor-release-1.8.0_92 ========== "
 echo oracle-java8-minor-release shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 
 # create dir for minor version

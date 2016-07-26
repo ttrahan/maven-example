@@ -8,17 +8,20 @@ env:
     - secure: AHiqRPg2kZqNnncdCknxFP1Kz+v3+MmZz+Z85gA77HMyWY+O5m9zpza4nHRz05BR8jTANYSCGgCkwuLtXT507hWaJkQHgmUV/1LXCk3ntV6GXxgt4CmGzrgmIDY/L0pyQR/iRZklah854lhknICMUCyUxJ4MwPKeHa+YI0sH8ozDtpvo8ELWdQLkE+CNY3RLtdnVPYLQZn6vW4pVFruZ1bKedhlgKGL9KAbRml1vNvJ3yIFMXLwoxdMu7vOR2Am3XOqUgEClWoBUyGB/bBmXL/1ZRQOQsYWnqdYJjFbcA281LRjI+yWHcg94phCP6n0m+sDopOkGfVvFEa+o5o9N5A==
   matrix:
     - VERSION_1=oracle-java-1.8.0_51
-    #- VERSION_2=oracle-java-1.8.0_91
-    - VERSION_2=java-8-oracle # default value - currently 1.8.0_91
+    - VERSION_2=oracle-java-1.8.0_91
     - VERSION_3=oracle-java-1.8.0_92
+    #- VERSION_2=java-8-oracle # default value - currently 1.8.0_91
 
 build:
   ci:
+    # identify and set appropriate java version for this build
     - tmp=VERSION_$SHIPPABLE_JOB_NUMBER && export BUILD_VERSION=${!tmp}
     - echo $BUILD_VERSION
     - . set_java_version.sh
     - echo $JAVA_HOME
+    # move source directory to avoid hitting max limits on file path length
     - mkdir -pv /relocate/maven-example && cp -r $SHIPPABLE_BUILD_DIR/.  /relocate/maven-example
     - SHIPPABLE_BUILD_DIR=/relocate/maven-example && cd $SHIPPABLE_BUILD_DIR
+    # inject secure password into Maven's settings.xml and run Maven steps
     - sed -i "s/{PASSWORD}/$PASSWORD/" .m2/settings.xml
     - mvn -B -s .m2/settings.xml -U clean deploy
